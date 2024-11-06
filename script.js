@@ -1,44 +1,20 @@
-// index.js
-
+// Selecting the bomb element and click counter display
+const bombEmoji = '💣';
+const clickCounterElement = document.getElementById('click-counter');
 let clickCount = 0;
-let timerSeconds = 1800; // 30 minutes in seconds
-let merchantActive = false;
 
-function explode() {
-    clickCount++;
-    document.getElementById('clickCount').innerText = clickCount;
-    alert('BOOM!'); // Trigger the "BOOM!" message
+// Function to update the click counter on the screen
+function updateClickCounter() {
+  clickCount++;
+  clickCounterElement.textContent = `Clicks: ${clickCount}`;
 }
 
-function updateMerchantTimer() {
-    if (timerSeconds > 0) {
-        timerSeconds--;
-        const minutes = Math.floor(timerSeconds / 60);
-        const seconds = timerSeconds % 60;
-        document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    } else {
-        if (!merchantActive) {
-            alert('The merchant has arrived!');
-            merchantActive = true;
-            setTimeout(() => {
-                alert('The merchant has left!');
-                merchantActive = false;
-                timerSeconds = 1800; // Reset timer for 30 minutes
-            }, 180000); // Merchant stays for 3 minutes (180000 ms)
-        }
-    }
+// Function to handle bomb click (increase counter only)
+function handleBombClick() {
+  updateClickCounter();
 }
 
-function buyAutoClicker() {
-    if (clickCount >= 10) { // Example cost for auto-clicker
-        clickCount -= 10; // Deduct clicks as cost
-        document.getElementById('clickCount').innerText = clickCount;
-        alert('Auto-Clicker purchased!'); // Additional auto-click functionality can go here
-    } else {
-        alert('Not enough clicks to buy an Auto-Clicker!');
-    }
-}
+// Event listener for bomb click (no animation or text, just count)
+document.getElementById('bomb').addEventListener('click', handleBombClick);
 
-// Update the timer every second
-setInterval(updateMerchantTimer, 1000);
  
