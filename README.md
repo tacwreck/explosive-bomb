@@ -16,7 +16,7 @@
 ## 🛠️ How to Play
 1. Go to the website https://tacwreck.github.io/explosive-bomb/.
 
-   ###### Or
+   **Or**
 
 1. Clone or download this repository:
    ```bash
